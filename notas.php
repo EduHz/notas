@@ -52,20 +52,11 @@ $conn->close();
 ?>
 
 <style>
-    /* .crear-nota {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1em;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-} */
-
+/* Estilos generales */
 .crear-nota:hover {
     background-color: #3e8e41;
 }
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -112,7 +103,6 @@ body {
 
 .nota-body {
     flex-grow: 1;
-    max-height: 150px; /* Limitar la altura de la nota */
     overflow: hidden; /* Esconder el texto que se sale de la card */
     position: relative;
 }
@@ -121,15 +111,6 @@ body {
     color: #555;
     line-height: 1.5;
     margin: 0 0 10px;
-}
-
-.nota-body::after {
-    content: '...'; /* Indicar que el texto está truncado */
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background: linear-gradient(to bottom, transparent, #fff);
-    padding-right: 5px;
 }
 
 .nota-footer {
@@ -173,20 +154,26 @@ body {
     text-align: center;
 }
 
+/* Estilos específicos para dispositivos móviles */
 @media (max-width: 768px) {
     .nota-card {
         max-width: 100%;
+        /* Asegúrate de que el ancho de la tarjeta no exceda el contenedor */
     }
     .contenedor {
         display: grid;
         justify-content: center;
         align-items: center;
         grid-template-columns: 1fr;
-        font-size: 5vh;
+        font-size: 8vh;
         padding: 3%;
         gap: 3%;
         padding-right: 7%;
-        /* padding: 3%; */
+    }
+    .nota-body {
+        /* Asegúrate de que la altura sea automática en móviles */
+        max-height: none; 
     }
 }
+
 </style>
