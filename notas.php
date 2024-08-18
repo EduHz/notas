@@ -35,12 +35,12 @@ if ($result->num_rows > 0) {
         echo "<p class='nota-text'>" . $row['notas'] . "</p>";
         echo "</div>";
         echo "<div class='nota-footer'>";
-        echo "<p>Autor: " . $row['autor'] . "</p>";
+        echo "<p>Author: " . $row['autor'] . "</p>";
         echo "<p class='fecha'>" . $row['fecha_hora'] . "</p>";
         echo "</div>";
         echo "<div class='nota-actions'>";
-        echo "<a href='editar.php?id=" . $row['id'] . "' class='btn'>Editar</a>";
-        echo "<a onclick='return confirm(\"¿Deseas eliminar esta nota?\")' href='eliminar.php?id=" . $row['id'] . "' class='btn eliminar'>Eliminar</a>";
+        echo "<a href='editar.php?id=" . $row['id'] . "' class='btn'>Edit</a>";
+        echo "<a onclick='return confirm(\"Do you want to delete this note?\")' href='eliminar.php?id=" . $row['id'] . "' class='btn eliminar'>Delete</a>";
         echo "</div>";
         echo "</div>";
     }
