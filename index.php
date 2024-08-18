@@ -12,4 +12,8 @@
     <input type="submit">
 </form>
 
+<a href="notas.php">Ver todas las notas</a>
 
+<style>
+    
+</style>

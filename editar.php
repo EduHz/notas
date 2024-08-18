@@ -19,7 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 ?>
 
 <h2>Editar Nota</h2>
-<form action="editar.php" method="post">
+<!-- Cambiar action -->
+<form action="respuesta.php" method="post">
     <input type="hidden" name="id" value="<?php echo $id;?>">
     <label for="Titulo">Titulo</label>
     <input type="text" name="titulo" maxlength="20" value="<?php echo $titulo;?>">
@@ -27,23 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     <input type="text" name="notas" value="<?php echo $notas;?>">
     <label for="Autor">Autor</label>
     <input type="text" name="autor" maxlength="20" value="<?php echo $autor;?>">
-    <a type="submit" href="notas.php">Actualizar</a>
+    <input type="submit">
 </form>
 
-<?php   
-    if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $id = $_POST['id'];
-        $titulo = $_POST['titulo'];
-        $notas = $_POST['notas'];
-        $autor = $_POST['autor'];
-
-        $sql = "UPDATE notas SET titulo='$titulo', notas='$notas', autor='$autor' WHERE id='$id'";
-        if ($conn -> query($sql) == TRUE) {
-            echo "nota actualizada";
-        } else {
-            echo "error" . $conn -> error;
-        }
-        $conn -> close();
-        exit();
-    }
 
