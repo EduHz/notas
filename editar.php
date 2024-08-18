@@ -94,21 +94,40 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             color: #777;
             text-align: center;
         }
+        input[type="text"],
+        textarea,
+        input[type="submit"] {
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+        }
+
+        input[type="text"],
+        textarea {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        textarea {
+            resize: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Editar Nota</h2>
+        <h2>Edit Note</h2>
 
         <form action="respuesta.php" method="post">
             <input type="hidden" name="id" value="<?php echo $id;?>">
-            <label for="Titulo">Titulo</label>
+            <label for="Titulo">Title</label>
             <input type="text" name="titulo" maxlength="20" value="<?php echo $titulo;?>" required>
 
-            <label for="Nota">Nota</label>
-            <input type="text" name="notas" value="<?php echo $notas;?>" required>
+            <label for="Note">Note</label>
+            <textarea class="textArea" name="notas" rows="10" cols="40" ><?php echo $notas;?></textarea>
 
-            <label for="Autor">Autor</label>
+            <label for="Autor">Author</label>
             <input type="text" name="autor" maxlength="20" value="<?php echo $autor;?>" required>
 
             <input type="submit" value="Guardar Cambios">

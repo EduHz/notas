@@ -102,7 +102,7 @@
             <input type="text" name="autor" maxlength="20" required placeholder="Enter your name">
 
             <label for="Note">Note</label>
-            <textarea class="textArea" name="notas" rows="10" cols="40" placeholder="Write your note here..."></textarea>
+            <textarea name="notas" rows="10" cols="40" placeholder="Write your note here..."></textarea>
 
             <input type="submit" value="Save Note">
         </form>
