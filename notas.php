@@ -2,14 +2,12 @@
 require "conexion.php";
 
 // Consulta para crear notas
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titulo = $_POST['titulo'];
     $notas = $_POST['notas'];
     $autor = $_POST['autor'];
 
-    // Aqui va el nombre de tabla
-
+    // Aquí va el nombre de la tabla
     $sql = "INSERT INTO notas (titulo, notas, autor) VALUES ('$titulo','$notas','$autor')";
     $result = $conn->query($sql);
 
@@ -18,8 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-
-    // $conn->close();
 }
 
 // Consulta para obtener todas las notas
@@ -29,114 +25,141 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     echo "<div class='contenedor'>";
     while ($row = $result->fetch_assoc()) {
-        echo "<div class='nota'>";
-        echo "<div class='fila1'>";
-        echo "<p>Titulo</p>";
-        echo "<p>Notas</p>";
-        echo "<p>Autor</p>";
-        echo "<p>Fecha</p>";
+        echo "<div class='nota-card'>";
+        echo "<div class='nota-header'>";
+        echo "<h3>" . $row['titulo'] . "</h3>";
         echo "</div>";
-        echo "<div class='datos'>";
-        echo "<p>" . $row['titulo'] . "</p>";
-        echo "<p>" . $row['notas'] . "</p>";
-        echo "<p>" . $row['autor'] . "</p>";
-        echo "<p class='fecha'>" . $row['fecha_hora'] . "<p/>";
+        echo "<div class='nota-body'>";
+        echo "<p class='nota-text'>" . $row['notas'] . "</p>";
         echo "</div>";
-        echo "<a href='editar.php?id=" . $row['id'] . "'>Editar</a>";
-        echo "<a href='eliminar.php?id=" . $row['id'] . "'>Eliminar</a>";
+        echo "<div class='nota-footer'>";
+        echo "<p>Autor: " . $row['autor'] . "</p>";
+        echo "<p class='fecha'>" . $row['fecha_hora'] . "</p>";
+        echo "</div>";
+        echo "<div class='nota-actions'>";
+        echo "<a href='editar.php?id=" . $row['id'] . "' class='btn'>Editar</a>";
+        echo "<a onclick='return confirm(\"¿Deseas eliminar esta nota?\")' href='eliminar.php?id=" . $row['id'] . "' class='btn eliminar'>Eliminar</a>";
+        echo "</div>";
         echo "</div>";
     }
     echo "</div>";
 } else {
-    echo "No hay notas disponibles";
+    echo "<div class='no-notas'>No hay notas disponibles</div>";
 }
 $conn->close();
-
 ?>
 
-
 <style>
-   /* Estilo global */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 body {
-  font-family: Open Sans, sans-serif;
-  background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-/* Contenedor de notas */
 .contenedor {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Nota individual */
-.nota {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.nota-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease;
 }
 
-/* Encabezado de nota */
-.fila1 {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr 1fr;
-  padding-bottom: 2%;
-  border-bottom: 1px solid #ddd;
-  font-weight: 600;
-  font-size: 1rem;
+.nota-card:hover {
+    transform: translateY(-5px);
 }
 
-
-/* Datos de nota */
-.datos {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr 1fr;
-  padding-top: 10px;
-  gap: 2%;
+.nota-header h3 {
+    margin: 0 0 10px;
+    font-size: 1.25em;
+    color: #333;
 }
 
-.datos p {
-  margin-bottom: 10px;
+.nota-body {
+    flex-grow: 1;
+    max-height: 150px; /* Limitar la altura de la nota */
+    overflow: hidden; /* Esconder el texto que se sale de la card */
+    position: relative;
 }
 
-/* Enlaces de acción */
-.nota a {
-  text-decoration: none;
-  color: #337ab7;
-  margin-right: 10px;
+.nota-text {
+    color: #555;
+    line-height: 1.5;
+    margin: 0 0 10px;
 }
 
-.nota a:hover {
-  color: #23527c;
+.nota-body::after {
+    content: '...'; /* Indicar que el texto está truncado */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(to bottom, transparent, #fff);
+    padding-right: 5px;
 }
 
-.titulo {
-    font-size: 10px;
+.nota-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875em;
+    color: #777;
 }
 
+.nota-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
 
-@media (width < 800px) {
-    .contenedor {
-        grid-template-columns: 1fr;
-        font-size: 3rem;
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn.eliminar {
+    background-color: #dc3545;
+}
+
+.btn.eliminar:hover {
+    background-color: #c82333;
+}
+
+.no-notas {
+    font-size: 1.25em;
+    color: #777;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .nota-card {
+        max-width: 100%;
     }
-    .titulo {
-        font-size: 1vh;
-    }
-    .fila1 {
-        font-size: 3rem;
-    }
-    .fecha {
-        font-size: 2rem;
-    }
 }
-
 </style>
