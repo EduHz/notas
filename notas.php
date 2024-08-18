@@ -34,11 +34,13 @@ if ($result->num_rows > 0) {
         echo "<h2>Titulo</h2>";
         echo "<h3>Notas</h3>";
         echo "<p>Autor</p>";
+        echo "<p>Fecha</p>";
         echo "</div>";
         echo "<div class='datos'>";
         echo "<h2>" . $row['titulo'] . "</h2>";
         echo "<p>" . $row['notas'] . "</p>";
         echo "<p>" . $row['autor'] . "</p>";
+        echo "<p>" . $row['fecha_hora'] . "<p/>";
         echo "</div>";
         echo "<a href='editar.php?id=" . $row['id'] . "'>Editar</a>";
         echo "<a href='eliminar.php?id=" . $row['id'] . "'>Eliminar</a>";
@@ -59,12 +61,12 @@ $conn->close();
     }
     .fila1 {
         display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-columns: 1fr 2fr 1fr 1fr;
         background-color: rgb(203, 151, 151);
     }
     .datos {
         display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-columns: 1fr 2fr 1fr 1fr;
         background-color: rgb(199, 181, 181);;
     }
     .datos p {
