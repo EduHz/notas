@@ -1,3 +1,5 @@
+<!-- <a href="index.php" class="btn crear-nota">Crear Nueva Nota</a> -->
+
 <?php
 require "conexion.php";
 
@@ -50,6 +52,20 @@ $conn->close();
 ?>
 
 <style>
+    /* .crear-nota {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+} */
+
+.crear-nota:hover {
+    background-color: #3e8e41;
+}
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -160,6 +176,17 @@ body {
 @media (max-width: 768px) {
     .nota-card {
         max-width: 100%;
+    }
+    .contenedor {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: 1fr;
+        font-size: 5vh;
+        padding: 3%;
+        gap: 3%;
+        padding-right: 7%;
+        /* padding: 3%; */
     }
 }
 </style>

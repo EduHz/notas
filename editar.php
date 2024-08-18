@@ -24,107 +24,95 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Nota</title>
-    <link rel="stylesheet" href="style.css">
     <style>
-        /* Estilos globales */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
-            font-family: Open Sans, sans-serif;
-            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        /* Estilos del formulario */
-        form {
-            display: grid;
-            gap: 15px;
+        .container {
             background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        input[type="text"], input[type="submit"], input[type="hidden"] {
-            padding: 10px;
-            font-size: 1rem;
-            border-radius: 5px;
-            border: 1px solid #ddd;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
             width: 100%;
         }
 
+        h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.75em;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
         input[type="submit"] {
-            background-color: #337ab7;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+        }
+
+        input[type="text"] {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
             color: #fff;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
         }
 
         input[type="submit"]:hover {
-            background-color: #23527c;
+            background-color: #0056b3;
         }
 
-        /* Estilo para el mensaje "Nota no encontrada" */
         .no-notas {
+            font-size: 1.25em;
+            color: #777;
             text-align: center;
-            font-size: 1.5rem;
-            color: #888;
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #f2f2f2;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Estilos responsivos */
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-
-            form {
-                padding: 15px;
-            }
-
-            label, input[type="text"], input[type="submit"] {
-                font-size: 0.9rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
         }
     </style>
 </head>
 <body>
-    <h2>Editar Nota</h2>
+    <div class="container">
+        <h2>Editar Nota</h2>
 
-    <form action="respuesta.php" method="post">
-        <input type="hidden" name="id" value="<?php echo $id;?>">
-        <label for="Titulo">Titulo</label>
-        <input type="text" name="titulo" maxlength="20" value="<?php echo $titulo;?>" required>
+        <form action="respuesta.php" method="post">
+            <input type="hidden" name="id" value="<?php echo $id;?>">
+            <label for="Titulo">Titulo</label>
+            <input type="text" name="titulo" maxlength="20" value="<?php echo $titulo;?>" required>
 
-        <label for="Nota">Nota</label>
-        <input type="text" name="notas" value="<?php echo $notas;?>" required>
+            <label for="Nota">Nota</label>
+            <input type="text" name="notas" value="<?php echo $notas;?>" required>
 
-        <label for="Autor">Autor</label>
-        <input type="text" name="autor" maxlength="20" value="<?php echo $autor;?>" required>
+            <label for="Autor">Autor</label>
+            <input type="text" name="autor" maxlength="20" value="<?php echo $autor;?>" required>
 
-        <input type="submit" value="Guardar Cambios">
-    </form>
+            <input type="submit" value="Guardar Cambios">
+        </form>
+    </div>
 </body>
 </html>
