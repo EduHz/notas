@@ -45,7 +45,7 @@ if ($result->num_rows > 0) {
         echo "</div>";
     }
     echo "</div>";
-    echo "<a href='index.php' class='nuevanota'>New note</a>";
+    echo "<a href='index.php' class='btn btn-movil' style='margin:3%;background:#035a7d'>New note</a>";
 } else {
     echo "<div class='no-notas'>No hay notas disponibles</div>";
 }
@@ -55,15 +55,6 @@ $conn->close();
 <style>
 /* Estilos generales */
 
-.nuevanota {
-    font-size: 1rem;
-    text-decoration: none;
-    padding: 3%;
-}
-
-.nuevanota a:visited {
-    color: red;    
-}
 
 .crear-nota:hover {
     background-color: #3e8e41;
@@ -186,9 +177,13 @@ body {
         /* Asegúrate de que la altura sea automática en móviles */
         max-height: none; 
     }
-    .nuevanota {
+    .btn-movil {
         font-size: 3rem;
     }
+    .btn {
+        padding: 4%;
+    }
+    
 }
 
 </style>
